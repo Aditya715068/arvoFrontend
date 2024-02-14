@@ -58,7 +58,7 @@ function App() {
 
             if (profileObj) {
                 const response = await fetch(
-                    "http://localhost:8080/api/v1/users",
+                    "https://arvoaic.onrender.com/api/v1/users",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -108,6 +108,7 @@ function App() {
             const token = localStorage.getItem("token");
 
             if (token) {
+                console.log(token)
                 return Promise.resolve();
             }
             return Promise.reject();
@@ -124,14 +125,14 @@ function App() {
 
     return (
         <ColorModeContextProvider>
-            <GitHubBanner />
+           
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
                 <Refine
-                    dataProvider={dataProvider("http://localhost:8080/api/v1")}
+                    dataProvider={dataProvider("https://arvoaic.onrender.com/api/v1")}
                     notificationProvider={useNotificationProvider}
-                    ReadyPage={ReadyPage}
+                   // ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
@@ -167,8 +168,8 @@ function App() {
                     ]}
                     Title={Title}
                     Sider={Sider}
-                    Layout={Layout}
-                    Header={Header}
+                     Layout={Layout}
+                    // Header={Header}
                     legacyRouterProvider={routerProvider}
                     legacyAuthProvider={authProvider}
                     LoginPage={Login}

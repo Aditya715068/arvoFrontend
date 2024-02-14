@@ -27,7 +27,7 @@ export const Login: React.FC = () => {
             try {
                 window.google.accounts.id.initialize({
                     ux_mode: "popup",
-                    client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+                    client_id: '1023049295393-o9079bubi5h0g47suje0ckgh2k06cvt8.apps.googleusercontent.com',
                     callback: async (res: CredentialResponse) => {
                         if (res.credential) {
                             login(res);
@@ -68,7 +68,7 @@ export const Login: React.FC = () => {
                     }}
                 >
                     <div>
-                        <img src={yariga} alt="Yariga Logo" />
+                        {/* <img src={yariga} alt="Yariga Logo" height={250} width={250} /> */}
                     </div>
                     <Box mt={4}>
                         <GoogleButton />

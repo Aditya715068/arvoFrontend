@@ -1,5 +1,15 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   font-family: 'Manrope', sans-serif !important;
+
 }
 
 a {
@@ -36,4 +46,39 @@ a {
       width: 100%;
       height: auto;
   }
+} */
+
+.image-container {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 1rem;
+}
+.thumbnail-container {
+  flex: 1 1 auto;
+}
+.magnify-container {
+  margin: 0 1rem;
+  flex: 1 1 auto;
+  min-width: 30vw;
+  line-height: 1;
+}
+.product-content-container {
+  flex: 1 1 auto;
+}
+.thumbnails {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+.thumbnail img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0;
+  object-position: 50% 50%;
 }

@@ -7,9 +7,56 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
+import { styled, alpha } from '@mui/material/styles';
+import InputBase from '@mui/material/InputBase';
+
 import { useMemo } from "react";
 
 import { PropertyCard, CustomButton } from "components";
+
+import SearchIcon from '@mui/icons-material/Search';
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  width: '100%',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
 
 const AllProperties = () => {
     const navigate = useNavigate();
@@ -55,19 +102,20 @@ const AllProperties = () => {
     return (
         <Box>
             <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
-                <Stack direction="column" width="100%">
-                    <Typography fontSize={25} fontWeight={700} color="#11142d">
+                <Stack direction="column" width="100%" >
+                    <Typography fontSize={25} fontWeight={1000} color="#11142d" >
                         {!allProperties.length
-                            ? "There are no properties"
-                            : "All Properties"}
+                            ? "There are no Product"
+                            : "All Products"}
                     </Typography>
                     <Box
                         mb={2}
                         mt={3}
                         display="flex"
-                        width="84%"
+                        width="96%"
                         justifyContent="space-between"
                         flexWrap="wrap"
+                        margin={5}
                     >
                         <Box
                             display="flex"
@@ -75,18 +123,28 @@ const AllProperties = () => {
                             flexWrap="wrap"
                             mb={{ xs: "20px", sm: 0 }}
                         >
-                            <CustomButton
+                            {/* <CustomButton
                                 title={`Sort price ${
                                     currentPrice === "asc" ? "↑" : "↓"
                                 }`}
                                 handleClick={() => toggleSort("price")}
                                 backgroundColor="#475be8"
                                 color="#fcfcfc"
-                            />
+                            /> */}
+                                {/* <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search> */}
+      
                             <TextField
                                 variant="outlined"
                                 color="info"
-                                placeholder="Search by title"
+                                placeholder=    "Search by title"
                                 value={currentFilterValues.title}
                                 onChange={(e) => {
                                     setFilters([
@@ -105,6 +163,8 @@ const AllProperties = () => {
                                 color="info"
                                 displayEmpty
                                 required
+                                sx={ { backgroundColor:"#ffad00",  color:"#fcfcfc"}}
+                             
                                 inputProps={{ "aria-label": "Without label" }}
                                 defaultValue=""
                                 value={currentFilterValues.propertyType}
@@ -121,7 +181,7 @@ const AllProperties = () => {
                                     );
                                 }}
                             >
-                                <MenuItem value="">All</MenuItem>
+                                <MenuItem value="">All Products</MenuItem>
                                 {[
                                     "Apartment",
                                     "Villa",
@@ -141,25 +201,23 @@ const AllProperties = () => {
                                 ))}
                             </Select>
                         </Box>
-                    </Box>
-                </Stack>
-            </Box>
-
-            <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-            >
+                        <Stack direction="row" gap="136px" alignContent='flex-end' justifyContent="flex-end" >
                 <CustomButton
-                    title="Add Property"
+                
+                    title="Add Products"
                     handleClick={() => navigate("/properties/create")}
-                    backgroundColor="#475be8"
+                    backgroundColor="#ffad00"
                     color="#fcfcfc"
                     icon={<Add />}
                 />
             </Stack>
+                    </Box>
+                </Stack>
+            </Box>
 
-            <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+     
+
+            <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}    margin={5}>
                 {allProperties?.map((property) => (
                     <PropertyCard
                         key={property._id}
@@ -172,7 +230,7 @@ const AllProperties = () => {
                 ))}
             </Box>
 
-            {allProperties.length > 0 && (
+            {/* {allProperties.length > 0 && (
                 <Box display="flex" gap={2} mt={3} flexWrap="wrap">
                     <CustomButton
                         title="Previous"
@@ -218,7 +276,7 @@ const AllProperties = () => {
                         ))}
                     </Select>
                 </Box>
-            )}
+            )} */}
         </Box>
     );
 };
